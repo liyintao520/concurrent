@@ -6,7 +6,7 @@
  *
  * 运行下面的程序，理解ThreadLocal
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_022;
 

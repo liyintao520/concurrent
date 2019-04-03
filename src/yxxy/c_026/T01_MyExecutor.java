@@ -1,5 +1,6 @@
 /**
  * 认识Executor
+ * Executor任务执行器，执行一个Runnable这项任务的
  */
 package yxxy.c_026;
 
@@ -14,6 +15,7 @@ public class T01_MyExecutor implements Executor{
 	@Override
 	public void execute(Runnable command) {
 		//new Thread(command).run();
+//		new Thread(command).start();
 		command.run();
 		
 	}

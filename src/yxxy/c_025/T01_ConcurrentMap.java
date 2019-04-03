@@ -6,29 +6,33 @@
  */
 package yxxy.c_025;
 
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.CountDownLatch;
 
 public class T01_ConcurrentMap {
 	public static void main(String[] args) {
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
 		//Map<String, String> map = new ConcurrentHashMap<>();
-		Map<String, String> map = new ConcurrentSkipListMap<>(); //高并发并且排序
+		Map<String, String> map = new ConcurrentSkipListMap<>(); //高并发并且排序（跳表map）
 		
 		//Map<String, String> map = new Hashtable<>();
 		//Map<String, String> map = new HashMap<>(); //Collections.synchronizedXXX
 		//TreeMap
+//		Collections.synchronizedMap(new HashMap<>());
 		Random r = new Random();
 		Thread[] ths = new Thread[100];
 		CountDownLatch latch = new CountDownLatch(ths.length);
 		long start = System.currentTimeMillis();
+		System.out.println("开始时间：" + sd.format(new Date()));
 		for(int i=0; i<ths.length; i++) {
 			ths[i] = new Thread(()->{
-				for(int j=0; j<10000; j++) map.put("a" + r.nextInt(100000), "a" + r.nextInt(100000));
+				for(int j=0; j<10000; j++) {
+					map.put("a" + r.nextInt(100000), "a" + r.nextInt(100000));
+				}
 				latch.countDown();
 			});
 		}
@@ -41,6 +45,7 @@ public class T01_ConcurrentMap {
 		}
 		
 		long end = System.currentTimeMillis();
-		System.out.println(end - start);
+		System.out.println("结束时间：" + sd.format(new Date()));
+		System.out.println("共耗时时间：" + (end - start) + "（单位毫秒）");
 	}
 }

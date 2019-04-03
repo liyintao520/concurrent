@@ -5,7 +5,7 @@
  * 
  * 更好的是采用下面的方式，既不用加锁，也能实现懒加载
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_023;
 

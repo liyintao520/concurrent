@@ -7,7 +7,7 @@
  * 重复销售？超量销售？
  * 
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_024;
 
@@ -20,9 +20,7 @@ public class TicketSeller1 {
 	static {
 		for(int i=0; i<10000; i++) tickets.add("票编号：" + i);
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
 		for(int i=0; i<10; i++) {
 			new Thread(()->{

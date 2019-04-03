@@ -14,7 +14,7 @@
  * 
  * 使用ConcurrentQueue提高并发性
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_024;
 
@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 
 public class TicketSeller4 {
+	// 队列 同步容器 先进先出 FIFO
 	static Queue<String> tickets = new ConcurrentLinkedQueue<>();
 	
 	
@@ -34,10 +35,16 @@ public class TicketSeller4 {
 		
 		for(int i=0; i<10; i++) {
 			new Thread(()->{
+				// TODO 这块拿出和判断也是分开做的 中间也有可能被其他线程拿到，并执行。但是即使拿到数据了也没有对队列执行修改操作，并且再次循环比对
 				while(true) {
-					String s = tickets.poll();
-					if(s == null) break;
-					else System.out.println("销售了--" + s);
+					// poll 我拿出最头上的那个数据 -- 如果队列中没有数据了 poll得到的就是一个null值
+// 源码：ConcurrentLinkedQueue poll() 如果p节点的元素不为null，则通过CAS来设置p节点引用的元素为null，如果成功则返回p节点的元素
+					String s = tickets.poll(); // 添加的事cas的锁
+					if(s == null) {
+						break;
+					} else {
+						System.out.println("销售了--" + s);
+					}
 				}
 			}).start();
 		}

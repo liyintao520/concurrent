@@ -1,12 +1,12 @@
-﻿Executor 
+﻿Executor 执行器执行任务的接口
 ExecutorService submit
 Callable = Runnable
-Executors 
+Executors 辅助类
 ThreadPool
-Future
-
-fixed cached single scheduled workstealing forkjoin
+Future  （有返回值）
+六种线程池：
+    fixed cached single scheduled workstealing forkjoin
 
 ThreadpoolExecutor
 
-PStreamAPI
+ParallelStream  API

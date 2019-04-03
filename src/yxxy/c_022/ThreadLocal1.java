@@ -1,7 +1,7 @@
 /**
  * ThreadLocal线程局部变量
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_022;
 

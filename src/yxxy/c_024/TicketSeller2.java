@@ -8,7 +8,7 @@
  * 使用Vector或者Collections.synchronizedXXX
  * 分析一下，这样能解决问题吗？
  * 
- * @author 马士兵
+ * @author liyintao
  */
 package yxxy.c_024;
 
@@ -24,7 +24,7 @@ public class TicketSeller2 {
 	}
 	
 	public static void main(String[] args) {
-		
+		// 判断size和remove中间也许会操作。因为判断和删除都是同步的，但是判断和删除中间的这段时间还是能被其他线程打断的
 		for(int i=0; i<10; i++) {
 			new Thread(()->{
 				while(tickets.size() > 0) {

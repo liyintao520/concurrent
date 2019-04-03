@@ -25,10 +25,10 @@ public class T06_Future {
 		//*******************************
 		ExecutorService service = Executors.newFixedThreadPool(5);
 		Future<Integer> f = service.submit(()->{
-			TimeUnit.MILLISECONDS.sleep(500);
+			TimeUnit.MILLISECONDS.sleep(1500);
 			return 1;
 		});
-		System.out.println(f.get());
+		System.out.println(f.get());	//	阻塞，什么时候执行完什么时候拿到结果
 		System.out.println(f.isDone());
 		
 	}

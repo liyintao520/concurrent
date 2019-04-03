@@ -7,6 +7,10 @@ import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 可以执行定时任务
+ *
+ */
 public class T07_DelayQueue {
 
 	static BlockingQueue<MyTask> tasks = new DelayQueue<>();
@@ -29,7 +33,7 @@ public class T07_DelayQueue {
 			else 
 				return 0;
 		}
-
+		// 多久时间可以取数据
 		@Override
 		public long getDelay(TimeUnit unit) {
 			
@@ -57,7 +61,7 @@ public class T07_DelayQueue {
 		tasks.put(t4);
 		tasks.put(t5);
 		
-		System.out.println(tasks);
+		System.out.println(tasks);	//	添加进去的时候已经排好序的。
 		
 		for(int i=0; i<5; i++) {
 			System.out.println(tasks.take());
